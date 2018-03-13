@@ -19,8 +19,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/queues', 'QueueController@index');
+Route::get('/queue/{queue}', 'QueueController@show');
+
 Route::get('/queues/create', 'QueueController@create');
+Route::post('/queues/create', 'QueueController@store');
 
 
-
+Route::get('/ticket/{ticket}', 'TicketController@show');
+Route::post('/ticket/{ticket}/priority', 'TicketController@updatePriority');

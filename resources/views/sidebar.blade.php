@@ -2,7 +2,7 @@
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link {{ (\Request::route()->getName() == 'home') ? 'active' : '' }}" href="#">
+                <a class="nav-link {{ (\Request::route()->getName() == 'home') ? 'active' : '' }}" href="/home">
                   <span data-feather="home"></span>
                   Dashboard
                 </a>
@@ -16,12 +16,14 @@
               </a>
             </h6>
             <ul class="nav flex-column mb-2">
+              @foreach($queues as $queue)
               <li class="nav-item">
-                <a class="nav-link {{ (\Request::route()->getName() == 'queue/monitoring') ? 'active' : '' }}" href="#">
+                <a class="nav-link {{ (\Request::path() == 'queue/' . $queue->id) ? 'active' : '' }}" href="/queue/{{$queue->id}}">
                   <span data-feather="layers"></span>
-                  NOC
+                  {{ $queue->name }}
                 </a>
               </li>
+              @endforeach
             </ul>
 
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">

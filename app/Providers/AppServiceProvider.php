@@ -13,12 +13,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot ()
     {
-        view()->composer('*', function ($view) {
-
+        // pass current route name to sidebar
+        /*view()->composer('sidebar', function ($view) {
             $current_route_name = \Request::route()->getName();
-
             $view->with('current_route_name', $current_route_name);
+        });*/
 
+        // pass list of queues to sidebar
+        view()->composer('sidebar', function ($view) {
+            $queues = \App\Queue::orderBy('name')->get();
+            $view->with('queues', $queues);
         });
     }
 
