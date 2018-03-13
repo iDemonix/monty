@@ -7,6 +7,7 @@
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Subject</th>
+                  <th scope="col">Updates</th>
                   <th scope="col">Last Updated</th>
                   <th scope="col">Owner</th>
                 </tr>
@@ -16,8 +17,9 @@
                 <tr>
                   <th scope="row">{{$ticket->id}}</th>
                   <td><a href="/ticket/{{$ticket->id}}">{{$ticket->subject}}</a></td>
+                  <td>{{$ticket->notes->count() + $ticket->actions->count()}}</td>
                   <td>{{$ticket->updated_at->diffForHumans()}}</td>
-                  <td>{{$ticket->user->name}}</td>
+                  <td>Someone</td>
                 </tr>
                 @endforeach
               </tbody>

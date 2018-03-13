@@ -9,6 +9,8 @@
               </div>
             </div>
           </div>
+
+          <div class="row">
           <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
@@ -17,7 +19,7 @@
                         <span class="details-left">Status</span>
                       </div>
                       <div class="col-md-9">
-                        <h5 style="display:inline"><span class="details-right"><span class="badge badge-success">Open</span></span>
+                        <h5 style="display:inline"><span class="details-right"><span class="badge badge-success">Open</span></span></h5>
                       </div>
                     </div>  
 
@@ -64,6 +66,24 @@
                 </div>
               </div>
             </div>
+          </div>
+          @foreach($events as $event)
+          <div class="row" style="margin-top: 10px;">
+            <div class="col-md-12">
+              
+              <div class="card">
+                <div class="card-body">
+                  @if($event->field)
+                    {{ ucfirst($event->field) }} changed from {{$event->old}} to {{$event->new}} at {{$event->created_at}}
+                  @else
+                    Note: {{ $event->body }} at {{$event->created_at}}
+                  @endif
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          @endforeach
 
             <!-- Change Priority Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

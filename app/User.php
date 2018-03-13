@@ -2,13 +2,10 @@
 
 namespace App;
 
-use Spatie\Activitylog\Traits\CausesActivity;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
-{
-    use CausesActivity;
     use Notifiable;
 
     /**
