@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Ticket;
 use App\Action;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TicketController extends Controller
 {
@@ -59,4 +60,39 @@ class TicketController extends Controller
 
         return redirect('ticket/' . $ticket->id);
     }
+
+    /**
+     * Store a ticket (triggered from web UI)
+     */
+    public function store(Request $request) 
+    {
+        $ticket = new Ticket;
+
+        // TODO: validation
+        $ticket->subject = $request->input('subject');
+        $ticket->status = 1; // open
+        $ticket->priority = $request->input('priority');
+        $ticket->queue_id = $request->input('queue');
+        $ticket->user_id = Auth::user()->id;
+
+        $ticket->save();
+
+        return redirect('ticket/' . $ticket->id);
+
+    }
+
+    /**
+     * Close a ticket (triggered from web UI)
+     */
+    public function close(Ticket $ticket, Request $request) 
+    {
+        // TODO: validation
+        $ticket->status = 0;
+        $ticket->save();
+
+        return redirect('ticket/' . $ticket->id);
+
+    }
+
+
 }

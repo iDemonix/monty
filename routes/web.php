@@ -17,13 +17,16 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/queue/{queue}', 'QueueController@show');
+    Route::get('/queue/{queue}', 'QueueController@show');
 
-Route::get('/queues/create', 'QueueController@create');
-Route::post('/queues/create', 'QueueController@store');
+    Route::get('/queues/create', 'QueueController@create');
+    Route::post('/queues/create', 'QueueController@store');
 
-
-Route::get('/ticket/{ticket}', 'TicketController@show');
-Route::post('/ticket/{ticket}/priority', 'TicketController@updatePriority');
+    Route::post('/ticket/create', 'TicketController@store');
+    Route::get('/ticket/{ticket}', 'TicketController@show');
+    Route::post('/ticket/{ticket}/close', 'TicketController@close');
+    Route::post('/ticket/{ticket}/priority', 'TicketController@updatePriority');
+});

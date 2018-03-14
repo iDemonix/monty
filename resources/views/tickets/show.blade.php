@@ -5,11 +5,10 @@
             <h2>Ticket: {{ $ticket->subject }}</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
               <div class="btn-group mr-2">
-                <button class="btn btn-sm btn-outline-danger">Close Ticket</button>
+                <button class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#closeTicketModal">Close Ticket</button>
               </div>
             </div>
           </div>
-
           <div class="row">
           <div class="col-md-6">
             <div class="card">
@@ -19,7 +18,7 @@
                         <span class="details-left">Status</span>
                       </div>
                       <div class="col-md-9">
-                        <h5 style="display:inline"><span class="details-right"><span class="badge badge-success">Open</span></span></h5>
+                        <h5 style="display:inline"><span class="details-right">{!!Helper::labelForStatus($ticket->status)!!}</span></h5>
                       </div>
                     </div>  
 
@@ -38,7 +37,7 @@
                         <h5 style="display:inline"><span class="badge badge-secondary">Low</span></h5>
                         @endif
                         <span class="showmeonhover">
-                            <a href="#" data-toggle="modal" data-target="#exampleModal"><span data-feather="edit-2"></span></a>
+                            <a href="" data-toggle="modal" data-target="#priorityModal"><span data-feather="edit-2"></span></a>
                         </span>
 
                       </div>
@@ -74,9 +73,11 @@
               <div class="card">
                 <div class="card-body">
                   @if($event->field)
-                    {{ ucfirst($event->field) }} changed from {{$event->old}} to {{$event->new}} at {{$event->created_at}}
+                    @if($event->field == 'priority')
+                      {{ ucfirst($event->field) }} changed from {!!Helper::labelForPriority($event->old)!!} to {!!Helper::labelForPriority($event->new)!!} at {{$event->created_at}} by {{!empty($event->user->name) ? $event->user->name : 'Unknown'}}
+                    @endif
                   @else
-                    Note: {{ $event->body }} at {{$event->created_at}}
+                    Note: {{ $event->body }} at {{$event->created_at}} by {{$event->user->name}}  
                   @endif
                 </div>
               </div>
@@ -85,44 +86,10 @@
           </div>
           @endforeach
 
-            <!-- Change Priority Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <form method="POST" action="/ticket/{{$ticket->id}}/priority">
-                    {{ csrf_field() }}
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Change ticket priority</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                            <ul class="radio-list">
-                                <li>
-                                    <input type="radio" name="priority" value="1" {{ $ticket->priority == 1 ? 'checked' : '' }}>
-                                    <h6><span class="badge badge-nudge badge-danger">Critical</span> - Tickets requring urgent attention</h6>
-                                </li>
-                                <li>
-                                    <input type="radio" name="priority" value="2" {{ $ticket->priority == 2 ? 'checked' : '' }}>
-                                    <h6><span class="badge badge-nudge badge-warning">High</span> - Higher priority tickets</h6>
-                                </li>
-                                <li>
-                                    <input type="radio" name="priority" value="3" {{ $ticket->priority == 3 ? 'checked' : '' }}>
-                                    <h6><span class="badge badge-nudge badge-info">Normal</span> - Normal tickets</h6>
-                                </li>
-                                <li>
-                                    <input type="radio" name="priority" value="4" {{ $ticket->priority == 4 ? 'checked' : '' }}>
-                                    <h6><span class="badge badge-nudge badge-secondary">Low</span> - Tickets that can wait</h6>
-                                </li>
-                            </ul>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
-                      </div>
-                    </div>
-                </form>
-              </div>
-            </div>
+            <!-- Modals -->
+            @include('modals.ticket-priority')
+            @include('modals.ticket-close')
+
+
+
 @endsection
