@@ -52,6 +52,7 @@ class TicketController extends Controller
 
         // log action
         $action = new Action;
+        $action->activity = 'update';
         $action->field = 'priority';
         $action->old = $old_priority;
         $action->new = $new_priority;
@@ -76,6 +77,9 @@ class TicketController extends Controller
         $ticket->user_id = Auth::user()->id;
 
         $ticket->save();
+
+        // log action
+        
 
         return redirect('ticket/' . $ticket->id);
 

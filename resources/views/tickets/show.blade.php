@@ -5,7 +5,15 @@
             <h2>Ticket: {{ $ticket->subject }}</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
               <div class="btn-group mr-2">
-                <button class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#closeTicketModal">Close Ticket</button>
+                @if($ticket->status == 0)
+                <button class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#reopenTicketModal">
+                  Re-open Ticket
+                </button>
+                @else
+                <button class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#closeTicketModal">
+                  Close Ticket
+                </button>
+                @endif
               </div>
             </div>
           </div>
@@ -86,10 +94,9 @@
           </div>
           @endforeach
 
-            <!-- Modals -->
-            @include('modals.ticket-priority')
-            @include('modals.ticket-close')
-
-
+          <!-- Modals -->
+          @include('modals.ticket-priority')
+          @include('modals.ticket-close')
+          @include('modals.ticket-reopen')
 
 @endsection
