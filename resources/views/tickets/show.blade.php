@@ -18,7 +18,7 @@
             </div>
           </div>
           <div class="row">
-          <div class="col-md-6">
+           <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
                     <div class="row details-row">
@@ -74,6 +74,95 @@
               </div>
             </div>
           </div>
+          <div class="spacer"></div>
+          @foreach($events as $event)
+          <div class="row">
+            <div class="col-md-12">
+                <div class="timeline-time test-">
+                  <span class="tl-time">
+                    {{ Carbon\Carbon::parse($event->created_at)->format('H:i') }}
+                  </span>
+                  <span class="tl-day">
+                    @if($event->created_at->isToday())
+                      Today
+                    @else
+                      {{ Carbon\Carbon::parse($event->created_at)->format('F jS') }}
+                    @endif
+                  </span>
+                </div>
+                @if($event->field)
+                  @if($event->field == 'priority' && ($event->old > $event->new))
+                  <div class="timeline-icon timeline-icon-action">
+                      <span data-feather="arrow-up"></span>
+                  </div>
+                  @elseif($event->field == 'priority' && ($event->old < $event->new))
+                  <div class="timeline-icon timeline-icon-action">
+                      <span data-feather="arrow-down"></span>
+                  </div>
+                  @else
+                  <div class="timeline-icon ">
+                      <span class="timeline-icon-text">?</span>
+                  </div>
+                  @endif
+                @endif
+                <div class="timeline-box test-">
+                  @if($event->field)
+                  <!-- event -->
+                  <div class="timeline-update">
+                    @if($event->field == 'priority')
+                      {{ ucfirst($event->field) }} changed from {!!Helper::labelForPriority($event->old)!!} to {!!Helper::labelForPriority($event->new)!!} by <strong>{{!empty($event->user->name) ? $event->user->name : 'Unknown'}}</strong>
+                    @endif
+                  </div>
+                  @else
+                  <!-- note -->
+                  <div class="card card-note">
+                    <div class="card-header">
+                      <div class="row">
+                        <div class="col-md-auto col-avatar test-">
+                          <div class="avatar-placeholder">DW</div>
+                        </div>
+                        <div class="col-md-10 test-">
+                          <span class="note-author">Dan Walker</span>
+                          <span class="note-time">Today at 13:59</span>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      {{ $event->body }}
+                    </div>
+                  </div>
+                  @endif
+                </div>
+            </div>
+          </div>
+          @endforeach
+          <div class="row">
+            <div class="col-md-12">
+                <div class="timeline-time">
+                  <span class="tl-time">
+                    {{ Carbon\Carbon::parse($event->created_at)->format('H:i') }}
+                  </span>
+                  <span class="tl-day">
+                    @if($event->created_at->isToday())
+                      Today
+                    @else
+                      {{ Carbon\Carbon::parse($event->created_at)->format('F jS') }}
+                    @endif
+                  </span>
+                </div>
+                  <div class="timeline-icon timeline-icon-action timeline-final">
+                      <span data-feather="sun"></span>
+                  </div>
+                  <div class="timeline-box timeline-box-final">
+                    <div class="timeline-update">
+                      Created at <strong>{{$ticket->created_at}}</strong> ({{$ticket->created_at->diffForHumans()}}) by <strong>{{$ticket->user->name}}</strong>
+                    </div>
+                </div>
+            </div>
+          </div>
+          
+          <!--
           @foreach($events as $event)
           <div class="row" style="margin-top: 10px;">
             <div class="col-md-12">
@@ -93,6 +182,7 @@
             </div>
           </div>
           @endforeach
+          -->
 
           <!-- Modals -->
           @include('modals.ticket-priority')

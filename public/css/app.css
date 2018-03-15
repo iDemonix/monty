@@ -1,3 +1,111 @@
+.test-r {  border: 1px solid red; }
+.test-b {  border: 1px solid blue; }
+.test-g {  border: 1px solid green; }
+
+
+
+.timeline-time {
+  width: 100px;
+  padding-right: 20px;
+  float: left;
+  display: block;
+}
+.tl-time {
+  display: block;
+  text-align: right;
+  font-size: 0.9em;
+  font-weight: bold;
+  color: #555;
+}
+.tl-day {
+  display: block;
+  text-align: right;
+  font-size:0.8em;
+  color: gray;
+}
+.timeline-box {
+  display: block;
+  margin-left: 120px;
+  padding-left: 40px;
+  border-left: 3px solid #ccc;
+  padding-bottom: 35px;
+}
+.timeline-box-final {
+  border: none;
+}
+.timeline-update {
+  font-size: 0.8em;
+  padding-top: 10px;
+}
+.timeline-final {
+  margin-bottom: 30px;
+}
+.timeline-icon {
+  width: 36px;
+  height: 36px;
+  margin-left: 4px;
+  border-radius: 18px;
+  float: left;
+  display: block;
+
+  border: 3px solid #e6e6e6;
+
+  background: #17a2b8;
+  text-align: center;
+
+  padding-top: 4px;
+  padding-left: 1px;
+}
+.timeline-icon-text {
+  color: white;
+  padding-top: 5px;
+}
+.spacer{ 
+  display:block;
+  clear: both; 
+  height: 20px;
+}
+.timeline-icon-action {
+  background: #e6e6e6;
+  color: #777;
+}
+.avatar-placeholder {
+  background: #e6e6e6;
+  width: 44px;
+  height: 44px;
+  border-radius: 22px;
+  margin-left: 0px;
+  text-align: center;
+  padding-top: 12px;
+}
+.col-avatar {
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-left: 8px;
+}
+
+.note-author,
+.note-time {
+  display: block;
+}
+
+.note-author {
+  font-weight: bold;
+  font-size: 1.1em;
+  color: #555;
+}
+
+.card-note {
+  margin-top
+}
+
+.note-time {
+  font-size: 0.8em;
+  color: #aaa;
+}
+
+
+
 .avatarCircle {
     border-radius: 50%;
     behavior: url(PIE.htc); /* remove if you don't care about IE8 */
