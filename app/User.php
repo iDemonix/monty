@@ -35,4 +35,9 @@ class User extends Authenticatable {
     {
         return $this->hasMany('App\Action');
     }
+
+    public function name()
+    {
+        return ($this->display_name ? $this->display_name : $this->name);
+    }
 }

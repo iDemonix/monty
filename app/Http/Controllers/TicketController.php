@@ -57,6 +57,8 @@ class TicketController extends Controller
         $action->old = $old_priority;
         $action->new = $new_priority;
         $action->ticket_id = $ticket->id;
+        $action->user_id = Auth::user()->id;
+
         $action->save();
 
         return redirect('ticket/' . $ticket->id);
@@ -90,9 +92,46 @@ class TicketController extends Controller
      */
     public function close(Ticket $ticket, Request $request) 
     {
+    
+
+        // log action
+        $action = new Action;
+        $action->activity = 'close';
+        $action->old = $ticket->status;
+        $action->field = 'status';
+        $action->new = 0;
+
+        $action->ticket_id = $ticket->id;
+        $action->user_id = Auth::user()->id;
+
         // TODO: validation
         $ticket->status = 0;
         $ticket->save();
+
+        $action->save();
+
+        return redirect('ticket/' . $ticket->id);
+
+    }
+
+    public function reopen(Ticket $ticket, Request $request) 
+    {
+
+        // log action
+        $action = new Action;
+        $action->activity = 'reopen';
+        $action->old = $ticket->status;
+        $action->field = 'status';
+        $action->new = 1;
+
+        $action->ticket_id = $ticket->id;
+        $action->user_id = Auth::user()->id;
+
+        // TODO: validation
+        $ticket->status = 1;
+        $ticket->save();
+
+        $action->save();
 
         return redirect('ticket/' . $ticket->id);
 

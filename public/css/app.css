@@ -3,7 +3,13 @@
 .test-g {  border: 1px solid green; }
 
 
-
+.note-footer {
+  font-size: 0.9em;
+  color: #777;
+}
+.note-footer>a {
+  margin-right: 5px;
+}
 .timeline-time {
   width: 100px;
   padding-right: 20px;
@@ -34,7 +40,7 @@
   border: none;
 }
 .timeline-update {
-  font-size: 0.8em;
+  font-size: 0.9em;
   padding-top: 10px;
 }
 .timeline-final {
@@ -53,7 +59,7 @@
   background: #17a2b8;
   text-align: center;
 
-  padding-top: 4px;
+  padding-top: 5px;
   padding-left: 1px;
 }
 .timeline-icon-text {
@@ -102,6 +108,37 @@
 .note-time {
   font-size: 0.8em;
   color: #aaa;
+}
+
+.btn-spacer{
+  margin-bottom: 10px;
+  width: 100%;
+  font-size: 0.9em;
+}
+
+.card-body-mini {
+  padding: 10px;
+  text-align: center;
+}
+
+span.details-mini {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #666;
+}
+
+.col-mini {
+  padding: 0px;
+  magin: 0px;
+}
+
+small.created {
+  margin-top: 10px;
+}
+
+.page-title h2 {
+  margin-bottom: 0px; 
+  display: block;
 }
 
 
