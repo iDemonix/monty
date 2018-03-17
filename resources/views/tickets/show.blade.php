@@ -181,7 +181,7 @@
                </div>
             </div>
             <div class="card-body">
-               {!! nl2br($event->body) !!}
+               {!! Markdown::convertToHtml($event->body) !!}
             </div>
             @if($event->attachments->count() > 0)
             <div class="card-footer note-footer">

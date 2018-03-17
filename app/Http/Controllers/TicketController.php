@@ -6,6 +6,8 @@ use App\Ticket;
 use App\Action;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use GrahamCampbell\Markdown\Facades\Markdown;
+
 
 class TicketController extends Controller
 {
