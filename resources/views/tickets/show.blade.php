@@ -19,33 +19,7 @@
       </div>
    </div>
 </div>
-<div class="row">
-  <!--
-   <div class="col-md-6">
-      <div class="card">
-         <div class="card-body test-r">
-            <div class="row details-row">
-               <div class="col-md-3">
-                  <span class="details-left">Created</span>
-               </div>
-               <div class="col-md-9">
-                  <span class="details-right">{{$ticket->created_at}}</span>
-                  <span class="details-right details-mute">{{$ticket->created_at->diffForHumans()}}</span>
-               </div>
-            </div>
-            <div class="row details-row">
-               <div class="col-md-3">
-                  <span class="details-left">Queue</span>
-               </div>
-               <div class="col-md-9">
-                  <span class="details-right">{{$ticket->queue->name}}</span>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
- -->
-   
+<div class="row">   
    <div class="col-md-4">
       <div class="card">
          <div class="card-body card-body-mini test-">
@@ -101,6 +75,7 @@
    </div>
 </div>
 <div class="spacer"></div>
+<!-- update ticket -->
 <form method="POST" action="/note/create">
    <input type="hidden" name="ticket" value="{{$ticket->id}}">
    {{csrf_field()}}
@@ -118,10 +93,13 @@
    </div>
 </form>
 <div class="spacer"></div>
+
+<!-- events (notes and actions) -->
 @foreach($events as $event)
 <div class="row">
    <div class="col-md-12">
-      <div class="timeline-time test-">
+      <!--time-->
+      <div class="timeline-time">
          <span class="tl-time">
          {{ Carbon\Carbon::parse($event->created_at)->format('H:i') }}
          </span>
@@ -133,28 +111,29 @@
          @endif
          </span>
       </div>
+      <!-- not a note -->
       @if($event->field)
-      @if($event->field == 'priority' && ($event->old > $event->new))
-      <div class="timeline-icon timeline-icon-action">
-         <span data-feather="arrow-up"></span>
-      </div>
-      @elseif($event->field == 'priority' && ($event->old < $event->new))
-      <div class="timeline-icon timeline-icon-action">
-         <span data-feather="arrow-down"></span>
-      </div>
-      @elseif($event->field == 'status' && $event->activity == 'close')
-      <div class="timeline-icon timeline-icon-action">
-         <span data-feather="x"></span>
-      </div>
-      @elseif($event->field == 'status' && $event->activity == 'reopen')
-      <div class="timeline-icon timeline-icon-action">
-         <span data-feather="book-open"></span>
-      </div>
-      @else
-      <div class="timeline-icon">
-         <span class="timeline-icon-text">?</span>
-      </div>
-      @endif
+        @if($event->field == 'priority' && ($event->old > $event->new))
+        <div class="timeline-icon timeline-icon-action">
+           <span data-feather="arrow-up"></span>
+        </div>
+        @elseif($event->field == 'priority' && ($event->old < $event->new))
+        <div class="timeline-icon timeline-icon-action">
+           <span data-feather="arrow-down"></span>
+        </div>
+        @elseif($event->field == 'status' && $event->activity == 'close')
+        <div class="timeline-icon timeline-icon-action">
+           <span data-feather="x"></span>
+        </div>
+        @elseif($event->field == 'status' && $event->activity == 'reopen')
+        <div class="timeline-icon timeline-icon-action">
+           <span data-feather="book-open"></span>
+        </div>
+        @else
+        <div class="timeline-icon">
+           <span class="timeline-icon-text">?</span>
+        </div>
+        @endif
       @endif
       <div class="timeline-box test-">
          @if($event->field)
@@ -171,9 +150,11 @@
          <div class="card card-note">
             <div class="card-header">
                <div class="row">
+                <!--
                   <div class="col-md-auto col-avatar">
                      <div class="avatar-placeholder">DW</div>
                   </div>
+                -->
                   <div class="col-md-10">
                      <span class="note-author">{{$event->user->name()}}</span>
                      <span class="note-time">{{$event->created_at->diffForHumans()}}</span>
