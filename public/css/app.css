@@ -62,9 +62,18 @@
   padding-top: 5px;
   padding-left: 1px;
 }
+
+.timeline-icon-avatar {
+
+}
+
 .timeline-icon-text {
   color: white;
-  padding-top: 5px;
+  padding-top: 8px;
+  width: 42px;
+  height: 42px;
+  border-radius: 21px;
+  margin-left: 0px;
 }
 .spacer{ 
   display:block;
@@ -90,15 +99,11 @@
   margin-left: 8px;
 }
 
-.note-author,
-.note-time {
-  display: block;
-}
-
 .note-author {
   font-weight: bold;
   font-size: 1.1em;
   color: #555;
+  margin-right: 5px;
 }
 
 .card-note {

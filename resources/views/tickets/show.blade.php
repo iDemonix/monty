@@ -127,6 +127,10 @@
            <span class="timeline-icon-text">?</span>
         </div>
         @endif
+      @else
+        <div class="timeline-icon timeline-icon-text">
+           <span class="timeline-icon-text">DW</span>
+        </div>
       @endif
       <div class="timeline-box test-">
          @if($event->field)
