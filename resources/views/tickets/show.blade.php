@@ -129,6 +129,10 @@
         <div class="timeline-icon timeline-icon-action">
            <span data-feather="book-open"></span>
         </div>
+        @elseif($event->field == 'queue' && $event->activity == 'move')
+        <div class="timeline-icon">
+           <span data-feather="layers"></span>
+        </div>
         @else
         <div class="timeline-icon">
            <span class="timeline-icon-text">?</span>
@@ -143,6 +147,8 @@
             {{ ucfirst($event->field) }} changed from {!!Helper::labelForPriority($event->old)!!} to {!!Helper::labelForPriority($event->new)!!} by <strong>{{!empty($event->user->name) ? $event->user->name() : 'Unknown'}}</strong>
             @elseif($event->field == 'status')
             <strong>{{!empty($event->user->name) ? $event->user->name() : 'Unknown'}}</strong> set the ticket status to {!!Helper::labelForStatus($event->new)!!} (was previously {!!Helper::labelForStatus($event->old)!!})
+            @elseif($event->field == 'queue')
+            <strong>{{!empty($event->user->name) ? $event->user->name() : 'Unknown'}}</strong> moved the ticket from {!!Helper::labelForStatus($event->old)!!} to {!!Helper::labelForStatus($event->new)!!})
             @endif
          </div>
          @else
