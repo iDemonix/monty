@@ -7,6 +7,12 @@
                   Dashboard
                 </a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link {{ (\Request::route()->getName() == 'notifications') ? 'active' : '' }}" href="/notifications">
+                  <span data-feather="bell"></span>
+                  Notifications
+                </a>
+              </li>
              <li class="nav-item">
                 <a class="nav-link {{ (\Request::route()->getName() == 'account') ? 'active' : '' }}" href="/account">
                   <span data-feather="user"></span>
