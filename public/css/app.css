@@ -116,6 +116,10 @@
   font-size: 0.9em;
 }
 
+.card-mini {
+  border: none;
+}
+
 .card-body-mini {
   padding: 10px;
   text-align: center;
@@ -125,6 +129,7 @@ span.details-mini {
   font-size: 1.2em;
   font-weight: bold;
   color: #666;
+  margin-right: 15px;
 }
 
 .col-mini {
@@ -171,11 +176,6 @@ span.details-mute {
 
 .details-row {
   margin-bottom: 5px;
-}
-
-.showmeonhover { display: none; }
-.detail-editable:hover .showmeonhover {
-    display: inline;
 }
 
 ul.radio-list {

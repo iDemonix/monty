@@ -4,8 +4,8 @@
   <div class="page-title">
    <h2>Ticket: {{ $ticket->subject }}</h2>
    <small class="created">Created {{ $ticket->created_at->diffForHumans() }} ({{ $ticket->created_at }})</small>
- </div>
-   <div class="btn-toolbar mb-2 mb-md-0">
+  </div>
+  <div class="btn-toolbar mb-2 mb-md-0">
       <div class="btn-group mr-2">
          @if($ticket->status == 0)
          <button class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#reopenTicketModal">
@@ -17,59 +17,48 @@
          </button>
          @endif
       </div>
-   </div>
+  </div>
 </div>
 <div class="row">   
-   <div class="col-md-4">
-      <div class="card">
-         <div class="card-body card-body-mini test-">
-            <div class="row test-">
-               <div class="col-md-6 test-">
-                  <span class="details-mini">Status</span>
-               </div>
-               <div class="col-md-6 test-">
-                  <h5 style="display:inline">{!!Helper::labelForStatus($ticket->status)!!}</h5>
-               </div>
-            </div>
+   <div class="col-md-3">
+      <div class="card card-mini">
+         <div class="card-body card-body-mini">
+            <span class="details-mini">Status</span>
+            <h5 style="display:inline">{!!Helper::labelForStatus($ticket->status)!!}</h5>
          </div>
       </div>
    </div>
-   <div class="col-md-4">
-      <div class="card">
+   <div class="col-md-3">
+      <div class="card card-mini">
          <div class="card-body card-body-mini test-">
-            <div class="row test-">
-               <div class="col-md-6 col-mini test-">
-                  <span class="details-mini">Priority</span>
-               </div>
-                <div class="col-md-6 detail-editable">
-                  @if($ticket->priority == 1)
-                  <h5 style="display:inline"><span class="badge badge-danger">Critical</span></h5>
-                  @elseif($ticket->priority == 2)
-                  <h5 style="display:inline"><span class="badge badge-warning">High</span></h5>
-                  @elseif($ticket->priority == 3)
-                  <h5 style="display:inline"><span class="badge badge-info">Normal</span></h5>
-                  @elseif($ticket->priority == 4)
-                  <h5 style="display:inline"><span class="badge badge-secondary">Low</span></h5>
-                  @endif
-                  <span class="showmeonhover">
-                  <a href="" data-toggle="modal" data-target="#priorityModal"><span data-feather="edit-2"></span></a>
-                  </span>
-               </div>
-            </div>
+            <span class="details-mini">Priority</span>
+            <a href="" data-toggle="modal" data-target="#priorityModal">
+            @if($ticket->priority == 1)
+            <h5 style="display:inline"><span class="pri-badge badge badge-danger">Critical</span></h5>
+            @elseif($ticket->priority == 2)
+            <h5 style="display:inline"><span class="pri-badge badge badge-warning">High</span></h5>
+            @elseif($ticket->priority == 3)
+            <h5 style="display:inline"><span class="pri-badge badge badge-info">Normal</span></h5>
+            @elseif($ticket->priority == 4)
+            <h5 style="display:inline"><span class="pri-badge badge badge-secondary">Low</span></h5>
+            @endif
+            </a>
          </div>
       </div>
    </div>
-   <div class="col-md-4">
-      <div class="card">
+   <div class="col-md-3">
+      <div class="card card-mini">
          <div class="card-body card-body-mini test-">
-            <div class="row test-">
-               <div class="col-md-6 test-">
-                  <span class="details-mini">Queue</span>
-               </div>
-               <div class="col-md-6 test-">
-                  {{$ticket->queue->name}}
-               </div>
-            </div>
+            <span class="details-mini">Queue</span>
+            {{$ticket->queue->name}}
+         </div>
+      </div>
+   </div>
+   <div class="col-md-3">
+      <div class="card card-mini">
+         <div class="card-body card-body-mini test-">
+            <span class="details-mini">Owner</span>
+            {{$ticket->user->name}}
          </div>
       </div>
    </div>
@@ -207,8 +196,18 @@
       </div>
    </div>
 </div>
+
 <!-- Modals -->
 @include('modals.ticket-priority')
 @include('modals.ticket-close')
 @include('modals.ticket-reopen')
+@endsection
+
+@section('scripts')
+<script>
+  $('.pri-badge').hover(
+       function(){ $(this).addClass('badge-dark') },
+        function(){ $(this).removeClass('badge-dark') }
+  )
+</script>
 @endsection

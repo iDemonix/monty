@@ -14,9 +14,6 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
 
-
-    <!-- Custom styles for this template -->
-    <link href="/dashboard.css" rel="stylesheet">
   </head>
 
   <body>
@@ -54,5 +51,6 @@
     <script>
       feather.replace()
     </script>
+    @yield('scripts')
   </body>
 </html>
