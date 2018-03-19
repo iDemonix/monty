@@ -33,7 +33,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/note/create', 'NoteController@create');
 
-    Route::get('/account', 'AccountController@show');
+    Route::get('/account', 'AccountController@showMyAccount');
+    Route::post('/account', 'AccountController@update');
     Route::post('/account/password', 'AccountController@changePassword');
 
+    Route::get('/user/{user}', 'UserController@show');
 });

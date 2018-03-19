@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AccountController extends Controller
 {
-    public function show()
+    public function showMyAccount()
     {
         return view('account')->with('user', Auth::user());
     }
@@ -30,5 +30,23 @@ class AccountController extends Controller
 
         // TODO: flash messages
         return redirect()->back()->with("success","Password changed successfully.");
+    }
+
+    public function update(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name'          => 'required|string|max:255',
+            'display_name'  => 'nullable|string|max:255',
+            'email'         => 'required|email'
+        ]);
+
+        $user = Auth::user();
+        $user->name         = $request->input('name');
+        $user->display_name = $request->input('display_name');
+        $user->email        = $request->input('email');
+        $user->save();
+
+        return redirect()->back()->with("success","Account changed successfully.");
+
     }
 }

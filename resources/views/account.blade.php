@@ -19,7 +19,17 @@
                         Edit your details
                     </div>
                     <div class="card-body">
-                        <form>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <form action="/account" method="POST">
+                            {{csrf_field()}}
                           <div class="form-group">
                             <label for="name">Full Name</label>
                             <input type="text" class="form-control" name="name" value="{{$user->name}}">

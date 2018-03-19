@@ -45,5 +45,15 @@ class Helper {
             break;
         }
     }
+
+    public static function userUrl($user) {
+        if ($user == NULL) 
+        {
+            return 'Unknown';
+        } else {
+            $name = ($user->display_name == NULL) ? $user->name : $user->display_name;
+            return '<a class="user" href="/user/' . $user->id . '">' . $name . '</a>';
+        }
+     }
  
 }

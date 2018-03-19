@@ -84,6 +84,7 @@
 <div class="spacer"></div>
 
 <!-- events (notes and actions) -->
+
 @foreach($events as $event)
 <div class="row">
    <div class="col-md-12">
@@ -137,7 +138,7 @@
          <!-- event -->
          <div class="timeline-update">
             @if($event->field == 'priority')
-            {{ ucfirst($event->field) }} changed from {!!Helper::labelForPriority($event->old)!!} to {!!Helper::labelForPriority($event->new)!!} by <strong>{{!empty($event->user->name) ? $event->user->name() : 'Unknown'}}</strong>
+            {{ ucfirst($event->field) }} changed from {!!Helper::labelForPriority($event->old)!!} to {!!Helper::labelForPriority($event->new)!!} by <strong>{!!Helper::userUrl($event->user)!!}</strong>
             @elseif($event->field == 'status')
             <strong>{{!empty($event->user->name) ? $event->user->name() : 'Unknown'}}</strong> set the ticket status to {!!Helper::labelForStatus($event->new)!!} (was previously {!!Helper::labelForStatus($event->old)!!})
             @elseif($event->field == 'queue')
@@ -148,7 +149,7 @@
          <!-- note -->
          <div class="card card-note">
             <div class="card-header">
-               <span class="note-author">{{$event->user->name()}}</span>
+               <span class="note-author">{!!Helper::userUrl($event->user)!!}</span>
                <span class="note-time">{{$event->created_at->diffForHumans()}}</span>
                <div class="note-icons-right">
                 @if($ticket->user_id == Auth::user()->id)

@@ -2,6 +2,15 @@
 .test-b {  border: 1px solid blue; }
 .test-g {  border: 1px solid green; }
 
+a.user {
+  color: black;
+}
+
+a.user:hover {
+  color: #888;
+  text-decoration: none;
+}
+
 .note-icons-right {
   float: right;
   text-align: right;
