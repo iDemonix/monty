@@ -64,7 +64,9 @@
    </div>
 </div>
 <div class="spacer"></div>
+
 <!-- update ticket -->
+@if($ticket->status)
 <form method="POST" action="/note/create">
    <input type="hidden" name="ticket" value="{{$ticket->id}}">
    {{csrf_field()}}
@@ -82,7 +84,7 @@
    </div>
 </form>
 <div class="spacer"></div>
-
+@endif
 <!-- events (notes and actions) -->
 
 @foreach($events as $event)
