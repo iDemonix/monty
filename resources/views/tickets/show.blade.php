@@ -148,16 +148,13 @@
          <!-- note -->
          <div class="card card-note">
             <div class="card-header">
-               <div class="row">
-                <!--
-                  <div class="col-md-auto col-avatar">
-                     <div class="avatar-placeholder">DW</div>
-                  </div>
-                -->
-                  <div class="col-md-10">
-                     <span class="note-author">{{$event->user->name()}}</span>
-                     <span class="note-time">{{$event->created_at->diffForHumans()}}</span>
-                  </div>
+               <span class="note-author">{{$event->user->name()}}</span>
+               <span class="note-time">{{$event->created_at->diffForHumans()}}</span>
+               <div class="note-icons-right">
+                @if($ticket->user_id == Auth::user()->id)
+                  <a href=""><span data-feather="edit"></span></a>
+                  <a href=""><span data-feather="trash"></span></a>
+                @endif
                </div>
             </div>
             <div class="card-body">
