@@ -41,6 +41,14 @@ class AccountController extends Controller
         ]);
 
         $user = Auth::user();
+
+        if($request->input('sort_reverse') == 'on')
+        {
+            $user->sort_reverse = 1;
+        } else {
+            $user->sort_reverse = 0;
+        }
+
         $user->name         = $request->input('name');
         $user->display_name = $request->input('display_name');
         $user->email        = $request->input('email');

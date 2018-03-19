@@ -29,6 +29,7 @@ class TicketController extends Controller
             $events[] = $note;
         }
 
+        // sort so newest are first
         usort($events, function ($a, $b)
         {
             if ($a->created_at == $b->created_at) {
@@ -36,6 +37,11 @@ class TicketController extends Controller
             }
             return ($a->created_at > $b->created_at) ? -1 : 1;
         });
+
+        if ( Auth::user()->sort_reverse )
+        {
+            $events = array_reverse($events, true);
+        }
 
         return view('tickets.show')->with(['ticket' => $ticket, 'events' => $events]);
     }
