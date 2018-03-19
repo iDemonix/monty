@@ -32,4 +32,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/ticket/{ticket}/priority', 'TicketController@updatePriority');
 
     Route::post('/note/create', 'NoteController@create');
+
+    Route::get('/account', 'AccountController@show');
+    Route::post('/account/password', 'AccountController@changePassword');
+
 });
