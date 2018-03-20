@@ -39,3 +39,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/user/{user}', 'UserController@show');
 });
+
+Route::get('webhooks/prometheus', function(Request $request)
+{
+    file_put_contents('prometheus.log', print_r($request, 1));
+});

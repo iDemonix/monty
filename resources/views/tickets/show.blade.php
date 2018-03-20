@@ -9,9 +9,12 @@
       <div class="btn-group mr-2">
          @if($ticket->status == 0)
          <button class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#reopenTicketModal">
-         Re-open Ticket
+         Reopen Ticket
          </button>
          @else
+         <button class="btn btn-sm btn-outline-info" data-toggle="modal" data-target="#renameTicketModal">
+         Rename Ticket
+         </button>
          <button class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#closeTicketModal">
          Close Ticket
          </button>
