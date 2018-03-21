@@ -42,16 +42,6 @@
                             <label for="email">Email</label>
                             <input type="email" class="form-control" name="email" value="{{$user->email}}">
                           </div>
-                          <div class="form-group">
-                            <span class="switch">
-                              @if($user->sort_reverse)
-                              <input type="checkbox" class="switch" name="sort_reverse" id="switch-id" checked>
-                              @else
-                              <input type="checkbox" class="switch" name="sort_reverse" id="switch-id">
-                              @endif
-                              <label for="switch-id">Reverse ticket update history (newest updates at the bottom)</label>
-                            </span>
-                          </div>
                           <button type="submit" class="btn btn-success">
                             <span data-feather="save" style="margin-right: 5px"></span>Update Account
                           </button>
@@ -60,10 +50,25 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card">
+                <div class="card" style="margin-bottom:30px">
                     <div class="card-body">
                        <h5>Account Since</h5>
                        <p>{{$user->created_at->diffForHumans()}}<br /><small>{{$user->created_at}}</small></p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                       <h5>Personal Settings</h5>
+                       <div class="form-group">
+                            <span class="switch">
+                              @if($user->sort_reverse)
+                              <input type="checkbox" class="switch" name="sort_reverse" id="switch-id" checked>
+                              @else
+                              <input type="checkbox" class="switch" name="sort_reverse" id="switch-id">
+                              @endif
+                              <label for="switch-id">Reverse ticket history</label>
+                            </span>
+                          </div>
                     </div>
                 </div>
             </div>
