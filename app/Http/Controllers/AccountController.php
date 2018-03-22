@@ -10,7 +10,10 @@ class AccountController extends Controller
 {
     public function showMyAccount()
     {
-        return view('account')->with('user', Auth::user());
+        return view('account')->with([
+            'user' => Auth::user(),
+            'timezones' => \DateTimeZone::listIdentifiers(\DateTimeZone::ALL)
+        ]);
     }
 
     public function changePassword(Request $request) 

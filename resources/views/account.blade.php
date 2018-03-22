@@ -52,8 +52,14 @@
             <div class="col-md-4">
                 <div class="card" style="margin-bottom:30px">
                     <div class="card-body">
-                       <h5>Account Since</h5>
-                       <p>{{$user->created_at->diffForHumans()}}<br /><small>{{$user->created_at}}</small></p>
+                       <h5>Locale</h5>
+                       <p>Timezone</p>
+                       <select class="custom-select" name="timezone">
+                        @foreach($timezones as $timezone)
+                        {{ $selected = ($timezone == $user->timezone) ? 'selected' : '' }}
+                        <option value="{{ $timezone }}" {{$selected}}>{{ $timezone }}</option>
+                        @endforeach
+                      </select>
                     </div>
                 </div>
                 <div class="card">
