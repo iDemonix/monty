@@ -96,13 +96,13 @@
       <!--time-->
       <div class="timeline-time">
          <span class="tl-time">
-         {{ Carbon\Carbon::parse($event->created_at)->format('H:i') }}
+         {{ Carbon\Carbon::parse($event->created_at)->timezone(Auth::user()->timezone)->format('H:i') }}
          </span>
          <span class="tl-day">
          @if($event->created_at->isToday())
          Today
          @else
-         {{ Carbon\Carbon::parse($event->created_at)->format('F jS') }}
+         {{ Carbon\Carbon::parse($event->created_at)->timezone(Auth::user()->timezone)->format('F jS') }}
          @endif
          </span>
       </div>
