@@ -11,7 +11,7 @@
           </div>
           <table class="table table-hover">
               <thead>
-                <tr onclick="">
+                <tr onclick="" href=''>
                   <th scope="col">Queue</th>
                   <th scope="col">Open</th>
                   <th scope="col">Overdue</th>
