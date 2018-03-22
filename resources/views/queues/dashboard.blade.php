@@ -30,7 +30,7 @@
                   <td><a href="/ticket/{{$ticket->id}}">{{$ticket->subject}}</a></td>
                   <td>{{$ticket->notes->count() + $ticket->actions->count()}}</td>
                   <td>{{$ticket->updated_at->diffForHumans()}}</td>
-                  <td>Someone</td>
+                  <td>{!!Helper::userUrl($ticket->user)!!}</td>
                 </tr>
                 @endforeach
               </tbody>
