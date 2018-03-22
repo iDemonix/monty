@@ -2,6 +2,11 @@
   font-size: 1rem;
   position: relative;
 }
+
+/* stop images in cards overflowing */
+div.card-body>p>img {
+  width: 100%;
+}
 .switch input {
   position: absolute;
   height: 1px;
