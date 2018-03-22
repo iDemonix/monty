@@ -157,7 +157,7 @@
                <span class="note-author">{!!Helper::userUrl($event->user)!!}</span>
                <span class="note-time">{{$event->created_at->diffForHumans()}}</span>
                <div class="note-icons-right">
-                @if($ticket->user_id == Auth::user()->id)
+                @if($event->user_id == Auth::user()->id)
                   <a href=""><span data-feather="edit"></span></a>
                   <a href=""><span data-feather="trash"></span></a>
                 @endif
