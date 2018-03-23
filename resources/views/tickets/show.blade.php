@@ -165,6 +165,9 @@
             </div>
             <div class="card-body">
                {!! Markdown::convertToHtml($event->body) !!}
+               @if($event->updated_at->gt($event->created_at) )
+                <small>Last edited {{$event->updated_at->diffForHumans()}}</small>
+               @endif
             </div>
             @if($event->attachments->count() > 0)
             <div class="card-footer note-footer">

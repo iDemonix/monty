@@ -274,6 +274,11 @@ a.user:hover {
   border: none;
 }
 
+.card-body {
+  margin-bottom: 4px;
+  padding-bottom: 4px;
+}
+
 .card-body-mini {
   padding: 10px;
   text-align: center;
