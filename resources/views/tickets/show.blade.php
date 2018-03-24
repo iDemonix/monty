@@ -70,7 +70,7 @@
 
 <!-- update ticket -->
 @if($ticket->status)
-<form method="POST" action="/note/create">
+<form id="update-ticket" method="POST" action="/note/create">
    <input type="hidden" name="ticket" value="{{$ticket->id}}">
    {{csrf_field()}}
    <div class="row">
@@ -80,7 +80,7 @@
          </div>
       </div>
       <div class="col-md-2">
-         <button type="submit" class="btn btn-success btn-sm btn-spacer"><span data-feather="plus-circle"></span> Update Ticket</button>
+         <button type="submit" class="btn btn-success btn-sm btn-spacer update-ticket"><span data-feather="plus-circle"></span> Update Ticket</button>
          <button type="button" class="btn btn-outline-secondary btn-sm btn-spacer"><span data-feather="paperclip"></span>  Add Attachment</button>
          <button type="button" class="btn btn-outline-danger btn-sm btn-spacer"><span data-feather="x"></span> Close Ticket</button>
       </div>
@@ -225,9 +225,11 @@
   $('a[href="#delete-note"]').click( function () {
        var noteid = $(this).data('id');
        $("#delete-note-id").val( noteid );
-       // As pointed out in comments, 
-       // it is superfluous to have to manually call the modal.
-       // $('#addBookDialog').modal('show');
+  });
+
+  $('.update-ticket').click( function () {
+       $(this).attr("disabled", "disabled");
+       $('#update-ticket').submit();
   });
 </script>
 @endsection
