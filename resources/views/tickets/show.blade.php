@@ -12,7 +12,7 @@
          Reopen Ticket
          </button>
          @else
-         <button class="btn btn-sm btn-outline-info" data-toggle="modal" data-target="#renameTicketModal">
+         <button class="btn btn-sm btn-outline-info" data-toggle="modal" data-target="#renameTicketModal" style="margin-right:10px">
          Rename Ticket
          </button>
          <button class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#closeTicketModal">
