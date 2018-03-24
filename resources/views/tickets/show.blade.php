@@ -158,8 +158,9 @@
                <span class="note-time">{{$event->created_at->diffForHumans()}}</span>
                <div class="note-icons-right">
                 @if($event->user_id == Auth::user()->id)
+
                   <a href=""><span data-feather="edit"></span></a>
-                  <a href=""><span data-feather="trash"></span></a>
+                  <a href="#delete-note" data-toggle="modal" data-target="#deleteNoteModal" data-id="{{$event->id}}"><span data-feather="trash"></span></a>
                 @endif
                </div>
             </div>
@@ -208,6 +209,7 @@
 </div>
 
 <!-- Modals -->
+@include('modals.note-delete')
 @include('modals.ticket-priority')
 @include('modals.ticket-close')
 @include('modals.ticket-reopen')
@@ -217,7 +219,15 @@
 <script>
   $('.pri-badge').hover(
        function(){ $(this).addClass('badge-dark') },
-        function(){ $(this).removeClass('badge-dark') }
+       function(){ $(this).removeClass('badge-dark') }
   )
+
+  $('a[href="#delete-note"]').click( function () {
+       var noteid = $(this).data('id');
+       $("#delete-note-id").val( noteid );
+       // As pointed out in comments, 
+       // it is superfluous to have to manually call the modal.
+       // $('#addBookDialog').modal('show');
+  });
 </script>
 @endsection

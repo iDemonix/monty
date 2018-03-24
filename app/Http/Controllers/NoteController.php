@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Note;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class NoteController extends Controller
 {
@@ -20,6 +21,14 @@ class NoteController extends Controller
         $note->save();
 
         return redirect('/ticket/' . $request->input('ticket'));
+    }
 
+    public function delete(Request $request)
+    {
+        // TODO: validation of ownership etc
+        $note = Note::find($request->input('delete-note-id'));
+        $note->delete();
+
+        return Redirect::back();
     }
 }
