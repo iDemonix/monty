@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use GrahamCampbell\Markdown\Facades\Markdown;
 
-
 class TicketController extends Controller
 {
     /**
@@ -64,6 +63,32 @@ class TicketController extends Controller
         $action->field = 'priority';
         $action->old = $old_priority;
         $action->new = $new_priority;
+        $action->ticket_id = $ticket->id;
+        $action->user_id = Auth::user()->id;
+
+        $action->save();
+
+        return redirect('ticket/' . $ticket->id);
+    }
+
+   /**
+     * Rename a ticket
+     */
+    public function rename(Ticket $ticket, Request $request)
+    {
+        // TODO: validation
+        $new_subject = $request->input('subject');
+        $old_subject = $ticket->subject;
+
+        $ticket->subject = $new_subject;
+        $ticket->save();
+
+        // log action
+        $action = new Action;
+        $action->activity = 'rename';
+        $action->field = 'subject';
+        $action->old = $old_subject;
+        $action->new = $new_subject;
         $action->ticket_id = $ticket->id;
         $action->user_id = Auth::user()->id;
 

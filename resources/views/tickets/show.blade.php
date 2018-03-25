@@ -68,7 +68,7 @@
 </div>
 <div class="spacer"></div>
 
-<!-- update ticket -->
+<!-- update ticket form -->
 @if($ticket->status)
 <form id="update-ticket" method="POST" action="/note/create">
    <input type="hidden" name="ticket" value="{{$ticket->id}}">
@@ -88,8 +88,8 @@
 </form>
 <div class="spacer"></div>
 @endif
-<!-- events (notes and actions) -->
 
+<!-- events (notes and actions) -->
 @foreach($events as $event)
 <div class="row">
    <div class="col-md-12">
@@ -125,8 +125,12 @@
            <span data-feather="book-open"></span>
         </div>
         @elseif($event->field == 'queue' && $event->activity == 'move')
-        <div class="timeline-icon">
+        <div class="timeline-icon timeline-icon-action">
            <span data-feather="layers"></span>
+        </div>
+        @elseif($event->field == 'subject' && $event->activity == 'rename')
+        <div class="timeline-icon timeline-icon-action">
+           <span data-feather="edit-3"></span>
         </div>
         @else
         <div class="timeline-icon">
@@ -144,10 +148,15 @@
          <div class="timeline-update">
             @if($event->field == 'priority')
             {{ ucfirst($event->field) }} changed from {!!Helper::labelForPriority($event->old)!!} to {!!Helper::labelForPriority($event->new)!!} by <strong>{!!Helper::userUrl($event->user)!!}</strong>
+
             @elseif($event->field == 'status')
             <strong>{{!empty($event->user->name) ? $event->user->name() : 'Unknown'}}</strong> set the ticket status to {!!Helper::labelForStatus($event->new)!!} (was previously {!!Helper::labelForStatus($event->old)!!})
+
             @elseif($event->field == 'queue')
             <strong>{{!empty($event->user->name) ? $event->user->name() : 'Unknown'}}</strong> moved the ticket from {!!Helper::labelForStatus($event->old)!!} to {!!Helper::labelForStatus($event->new)!!})
+
+            @elseif($event->field == 'subject')
+            <strong>{{!empty($event->user->name) ? $event->user->name() : 'Unknown'}}</strong> changed the ticket subject to <strong>{{$event->new}}</strong> (was <em>{{$event->old}}</em>)
             @endif
          </div>
          @else
@@ -213,6 +222,7 @@
 @include('modals.ticket-priority')
 @include('modals.ticket-close')
 @include('modals.ticket-reopen')
+@include('modals.ticket-rename')
 @endsection
 
 @section('scripts')
