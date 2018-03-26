@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+Route::post('/attachment/upload', 'AttachmentController@upload');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
@@ -32,10 +32,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/ticket/{ticket}/priority', 'TicketController@updatePriority');
     Route::post('/ticket/{ticket}/rename', 'TicketController@rename');
 
-
     Route::post('/note/create', 'NoteController@create');
     Route::post('/note/delete', 'NoteController@delete');
 
+    //Route::post('/attachment/upload', 'AttachmentController@upload');
 
     Route::get('/account', 'AccountController@showMyAccount');
     Route::post('/account', 'AccountController@update');

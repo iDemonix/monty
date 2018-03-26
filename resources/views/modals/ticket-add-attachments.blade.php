@@ -1,5 +1,5 @@
 <div class="modal fade" id="addAttachmentsModal" tabindex="-1" role="dialog" aria-labelledby="addAttachmentsModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
+              <div class="modal-dialog modal-lg" role="document">
                 <form method="POST" action="/ticket/{{$ticket->id}}/close">
                     {{ csrf_field() }}
                     <div class="modal-content">

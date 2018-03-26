@@ -326,8 +326,12 @@ function ui_multi_update_file_progress(id, percent, color, active)
    * UI functions ui_* can be located in: demo-ui.js
    */
   $('#drag-and-drop-zone').dmUploader({ //
-    url: 'backend/upload.php',
-    maxFileSize: 3000000, // 3 Megs 
+    url: '/attachment/upload',
+    maxFileSize: 1000000 * 64, // 64 MB - TODO: Configurate this
+    extraData: {
+       "_token": "{{csrf_token()}}",
+       "ticket": "{{$ticket->id}}"
+    },
     onDragEnter: function(){
       // Happens when dragging something over the DnD area
       this.addClass('active');
@@ -370,6 +374,7 @@ function ui_multi_update_file_progress(id, percent, color, active)
       ui_add_log('Upload of file #' + id + ' COMPLETED', 'success');
       ui_multi_update_file_status(id, 'success', 'Upload Complete');
       ui_multi_update_file_progress(id, 100, 'success', false);
+      alert(JSON.stringify(data));
     },
     onUploadError: function(id, xhr, status, message){
       ui_multi_update_file_status(id, 'danger', message);
