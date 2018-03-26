@@ -27,7 +27,7 @@
                   <th scope="row">{{$ticket->id}}</th>
                   <td>{!!Helper::labelForStatus($ticket->status)!!}</td>
                   <td>{!!Helper::labelForPriority($ticket->priority)!!}</td>
-                  <td><a href="/ticket/{{$ticket->id}}">{{$ticket->subject}}</a></td>
+                  <td><a href="/ticket/{{$ticket->id}}" style="text-decoration: none">{{$ticket->subject}}</a></td>
                   <td>{{$ticket->notes->count() + $ticket->actions->count()}}</td>
                   <td>{{$ticket->updated_at->diffForHumans()}}</td>
                   <td>{!!Helper::userUrl($ticket->user)!!}</td>
