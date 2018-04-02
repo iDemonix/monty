@@ -374,7 +374,9 @@ function ui_multi_update_file_progress(id, percent, color, active)
       ui_add_log('Upload of file #' + id + ' COMPLETED', 'success');
       ui_multi_update_file_status(id, 'success', 'Upload Complete');
       ui_multi_update_file_progress(id, 100, 'success', false);
-      alert(JSON.stringify(data));
+
+      // TODO: Update display    
+      
     },
     onUploadError: function(id, xhr, status, message){
       ui_multi_update_file_status(id, 'danger', message);
