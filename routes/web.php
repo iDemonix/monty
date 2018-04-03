@@ -26,7 +26,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/queues/create', 'QueueController@store');
 
     Route::post('/ticket/create', 'TicketController@store');
-    Route::get('/ticket/{ticket}', 'TicketController@show');
+    Route::get('/ticket/{ticket}', 'TicketController@show')->name('ticket');
     Route::post('/ticket/{ticket}/close', 'TicketController@close');
     Route::post('/ticket/{ticket}/reopen', 'TicketController@reopen');
     Route::post('/ticket/{ticket}/priority', 'TicketController@updatePriority');
