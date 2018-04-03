@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Attachment extends Model
 {
-    public function ticket()
+    public function note()
     {
-        return $this->belongsTo('App\Ticket');
+        return $this->belongsTo('App\Note');
     }
 }

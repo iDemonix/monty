@@ -14,10 +14,10 @@ class AttachmentController extends Controller
 
         $attachment = new Attachment;
         $attachment->name = $request->file('file')->getClientOriginalName();
-        $attachment->source = $path;
+        $attachment->source = '/' . $path;
         $attachment->save();
 
         return response()
-            ->json(['status' => 'ok', 'path' => 'test']);
+            ->json(['status' => 'ok', 'id' => $attachment->id]);
     }
 }

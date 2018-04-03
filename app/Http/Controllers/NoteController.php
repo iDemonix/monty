@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Note;
+use App\Attachment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
@@ -19,6 +20,19 @@ class NoteController extends Controller
         $note->user_id = Auth::user()->id;
 
         $note->save();
+
+        // attachments - TODO: validation
+        if ($request->input('attachments_array')) 
+        {
+            $ids = explode(',', $request->input('attachments_array'));
+
+            for ($i=0; $i<count($ids)-1; $i++)
+            {
+                $attachment = Attachment::find($ids[$i]);
+                $attachment->note()->associate($note);
+                $attachment->save();
+            }
+        }
 
         return redirect('/ticket/' . $request->input('ticket'));
     }

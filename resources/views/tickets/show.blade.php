@@ -72,6 +72,8 @@
 @if($ticket->status)
 <form id="update-ticket" method="POST" action="/note/create">
    <input type="hidden" name="ticket" value="{{$ticket->id}}">
+   <input type="hidden" id="attachments_array" name="attachments_array" value="">
+
    {{csrf_field()}}
    <div class="row">
       <div class="col-md-10">
@@ -84,7 +86,7 @@
           <span data-feather="plus-circle"></span>  Update Ticket
          </button>
          <button type="button" class="btn btn-outline-secondary btn-sm btn-spacer" data-toggle="modal" data-target="#addAttachmentsModal">
-          <span data-feather="paperclip"></span>  Add Attachments
+          <span data-feather="paperclip"></span>  <span id="addattachments">Add Attachments</span>
          </button>
          <button type="button" class="btn btn-outline-danger btn-sm btn-spacer">
           <span data-feather="x"></span>  Close Ticket
@@ -188,7 +190,7 @@
             @if($event->attachments->count() > 0)
             <div class="card-footer note-footer">
                @foreach($event->attachments as $attachment)
-               <span data-feather="file"></span> <a href="#">{{$attachment->name}}</a> 
+               <span data-feather="file"></span> <a href="{{$attachment->source}}">{{$attachment->name}}</a> 
                @endforeach
             </div>
             @endif
@@ -229,11 +231,14 @@
 @include('modals.ticket-close')
 @include('modals.ticket-reopen')
 @include('modals.ticket-rename')
-@include('modals.ticket-add-attachments')
+@include('modals.ticket-attachments')
 @endsection
 
 @section('scripts')
 <script>
+  var attachment_count = 0;
+  var attachment_array = [];
+
   $('.pri-badge').hover(
        function(){ $(this).addClass('badge-dark') },
        function(){ $(this).removeClass('badge-dark') }
@@ -370,10 +375,16 @@ function ui_multi_update_file_progress(id, percent, color, active)
     },
     onUploadSuccess: function(id, data){
       // A file was successfully uploaded
-      ui_add_log('Server Response for file #' + id + ': ' + JSON.stringify(data));
+      //alert('Server Response for file #' + id + ': ' + data.id);
       ui_add_log('Upload of file #' + id + ' COMPLETED', 'success');
       ui_multi_update_file_status(id, 'success', 'Upload Complete');
       ui_multi_update_file_progress(id, 100, 'success', false);
+
+      attachment_count = attachment_count + 1;
+      $("#addattachments").html('Attachments (' + attachment_count + ')');
+
+      var old = $("#attachments_array").prop('value');
+      $("#attachments_array").prop('value', old + data.id + ',');
 
       // TODO: Update display    
       

@@ -1,6 +1,5 @@
 <div class="modal fade" id="addAttachmentsModal" tabindex="-1" role="dialog" aria-labelledby="addAttachmentsModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-lg" role="document">
-                <form method="POST" action="/ticket/{{$ticket->id}}/close">
                     {{ csrf_field() }}
                     <div class="modal-content">
                       <div class="modal-header">
@@ -32,10 +31,7 @@
 
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-info">Continue</button>
-                      </div>
+                        <button type="button" class="btn" data-dismiss="modal">Close</button>                      </div>
                     </div>
-                </form>
               </div>
             </div>
