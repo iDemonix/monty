@@ -16,7 +16,6 @@
                   <th scope="col">Status</th>
                   <th scope="col">Priority</th>
                   <th scope="col">Subject</th>
-                  <th scope="col">Updates</th>
                   <th scope="col">Last Updated</th>
                   <th scope="col">Owner</th>
                 </tr>
@@ -27,8 +26,12 @@
                   <th scope="row">{{$ticket->id}}</th>
                   <td>{!!Helper::labelForStatus($ticket->status)!!}</td>
                   <td>{!!Helper::labelForPriority($ticket->priority)!!}</td>
-                  <td><a href="{{ route('ticket', ['ticket' => $ticket]) }}" style="text-decoration: none">{{$ticket->subject}}</a></td>
-                  <td>{{$ticket->notes->count() + $ticket->actions->count()}}</td>
+                  <td>
+                    <a href="{{ route('ticket', ['ticket' => $ticket]) }}" style="text-decoration: none">{{$ticket->subject}}</a>
+                    @if( $ticket->notes->count() > 0 )
+                      <span style="font-size: 0.7em; color: #bbb;"> &nbsp;<span data-feather="message-square"></span> {{$ticket->notes->count()}}</span>
+                    @endif
+                  </td>
                   <td>{{$ticket->updated_at->diffForHumans()}}</td>
                   <td>{!!Helper::userUrl($ticket->user)!!}</td>
                 </tr>
