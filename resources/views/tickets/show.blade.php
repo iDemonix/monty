@@ -146,8 +146,8 @@
         </div>
         @endif
       @else
-        <div class="timeline-icon timeline-icon-text">
-           <span class="timeline-icon-text">DW</span>
+        <div class="timeline-icon timeline-icon-text" style="background-image:url('{{ $event->user->gravatar() }}')">
+           
         </div>
       @endif
       <div class="timeline-box test-">
