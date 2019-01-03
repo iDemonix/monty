@@ -49,6 +49,33 @@ class Helper {
         }
     }
 
+    public static function labelForUserStatus($status) 
+    {
+        switch($status) {
+            case 0:
+            return '<span class="badge badge-secondary">Inactive</span>';
+            break;
+
+            case 1:
+            return '<span class="badge badge-success">Active</span>';
+            break;
+
+            default:
+            return '<span class="badge badge-warning">Unknown</span>';
+            break;
+        }
+    }
+
+    public static function lastLoginAt($login)
+    {
+        if (!$login)
+        {
+            return 'Never logged in';
+        } else {
+            return $login->diffForHumans();
+        }
+    }
+
     public static function userUrl($user) 
     {
         if ($user == NULL) 

@@ -54,6 +54,14 @@
     <script>
       feather.replace()
     </script>
+    <script>
+    // make table rows clickable
+    $(document).ready(function($) {
+        $(".tr-pointer").click(function() {
+            window.document.location = $(this).data("href");
+        });
+    });
+    </script>
     @yield('scripts')
   </body>
 </html>

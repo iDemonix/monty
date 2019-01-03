@@ -1,3 +1,7 @@
+.tr-pointer {
+  cursor: pointer;
+}
+
 .switch {
   font-size: 1rem;
   position: relative;

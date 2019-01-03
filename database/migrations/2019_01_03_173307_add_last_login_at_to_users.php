@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class MakeAttachmentNoteIdNullable extends Migration
+class AddLastLoginAtToUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class MakeAttachmentNoteIdNullable extends Migration
      */
     public function up()
     {
-        Schema::table('attachments', function (Blueprint $table) {
-            $table->integer('note_id')->nullable()->unsigned()->change();
+        Schema::table('users', function (Blueprint $table) {
+            $table->timestamp('last_login_at')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class MakeAttachmentNoteIdNullable extends Migration
      */
     public function down()
     {
-        Schema::table('attachments', function (Blueprint $table) {
-            $table->integer('note_id')->nullable(0);
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('last_login_at');
         });
     }
 }

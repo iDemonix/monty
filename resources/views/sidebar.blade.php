@@ -49,7 +49,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {{ (\Request::route()->getName() == 'users') ? 'active' : '' }}" href="#">
+                <a class="nav-link {{ (\Request::route()->getName() == 'users') ? 'active' : '' }}" href="/users">
                   <span data-feather="users"></span>
                   Users
                 </a>

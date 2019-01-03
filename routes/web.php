@@ -42,6 +42,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/account/password', 'AccountController@changePassword');
 
     Route::get('/user/{user}', 'UserController@show');
+
+    Route::get('/users', 'UserController@index');
 });
 
 Route::post('webhooks/prometheus', function(Request $request)
