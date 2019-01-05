@@ -1,6 +1,6 @@
 <div class="modal fade" id="closeTicketModal" tabindex="-1" role="dialog" aria-labelledby="closeTicketModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
-                <form method="POST" action="/ticket/{{$ticket->id}}/close">
+                <form method="POST" action="{{ route('ticket', ['ticket' => $ticket]) }}/close">
                     {{ csrf_field() }}
                     <div class="modal-content">
                       <div class="modal-header">

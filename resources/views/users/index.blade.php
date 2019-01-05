@@ -5,7 +5,7 @@
             <h2>User Accounts</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
               <div class="btn-group mr-2">
-                <button class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#newTicketModal">Add User</button>
+                <button class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#newTicketModal"><span data-feather="plus" style="margin-right: 5px"></span>Add User</button>
               </div>
             </div>
           </div>
@@ -22,7 +22,7 @@
               </thead>
               <tbody>
                 @foreach($users as $user)
-                <tr data-href="/user/{{$user->id}}" class="tr-pointer">
+                <tr data-href="/users/{{$user->id}}" class="tr-pointer">
                   <th scope="row">{{$user->id}}</th>
                   <td><strong>{{$user->display_name}}</strong></td>
                   <td>{{$user->name}}</td>

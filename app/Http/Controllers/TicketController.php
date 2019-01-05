@@ -68,7 +68,7 @@ class TicketController extends Controller
 
         $action->save();
 
-        return redirect('ticket/' . $ticket->id);
+        return redirect('tickets/' . $ticket->id);
     }
 
    /**
@@ -94,7 +94,7 @@ class TicketController extends Controller
 
         $action->save();
 
-        return redirect('ticket/' . $ticket->id);
+        return redirect('tickets/' . $ticket->id);
     }
 
     /**
@@ -116,7 +116,7 @@ class TicketController extends Controller
         // log action
         
 
-        return redirect('ticket/' . $ticket->id);
+        return redirect('tickets/' . $ticket->id);
 
     }
 
@@ -143,7 +143,7 @@ class TicketController extends Controller
 
         $action->save();
 
-        return redirect('ticket/' . $ticket->id);
+        return redirect('tickets/' . $ticket->id);
 
     }
 
@@ -166,7 +166,7 @@ class TicketController extends Controller
 
         $action->save();
 
-        return redirect('ticket/' . $ticket->id);
+        return redirect('tickets/' . $ticket->id);
 
     }
 

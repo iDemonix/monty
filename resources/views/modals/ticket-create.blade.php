@@ -1,6 +1,6 @@
 <div class="modal fade" id="newTicketModal" tabindex="-1" role="dialog" aria-labelledby="newTicketModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
-                <form method="POST" action="/ticket/create">
+                <form method="POST" action="/tickets/create">
                     {{ csrf_field() }}
                     <input type="hidden" name="queue" value="{{$queue->id}}">
                     <div class="modal-content">

@@ -20,17 +20,17 @@ Route::post('/attachment/upload', 'AttachmentController@upload');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::get('/queue/{queue}', 'QueueController@show');
+    Route::get('/queues/{queue}', 'QueueController@show');
 
     Route::get('/queues/create', 'QueueController@create');
     Route::post('/queues/create', 'QueueController@store');
 
-    Route::post('/ticket/create', 'TicketController@store');
-    Route::get('/ticket/{ticket}', 'TicketController@show')->name('ticket');
-    Route::post('/ticket/{ticket}/close', 'TicketController@close');
-    Route::post('/ticket/{ticket}/reopen', 'TicketController@reopen');
-    Route::post('/ticket/{ticket}/priority', 'TicketController@updatePriority');
-    Route::post('/ticket/{ticket}/rename', 'TicketController@rename');
+    Route::post('/tickets/create', 'TicketController@store');
+    Route::get('/tickets/{ticket}', 'TicketController@show')->name('ticket');
+    Route::post('/tickets/{ticket}/close', 'TicketController@close');
+    Route::post('/tickets/{ticket}/reopen', 'TicketController@reopen');
+    Route::post('/tickets/{ticket}/priority', 'TicketController@updatePriority');
+    Route::post('/tickets/{ticket}/rename', 'TicketController@rename');
 
     Route::post('/note/create', 'NoteController@create');
     Route::post('/note/delete', 'NoteController@delete');
@@ -41,7 +41,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/account', 'AccountController@update');
     Route::post('/account/password', 'AccountController@changePassword');
 
-    Route::get('/user/{user}', 'UserController@show');
+    Route::get('/users/{user}', 'UserController@show');
+    Route::get('/users/new', 'UserController@new');
 
     Route::get('/users', 'UserController@index');
 });

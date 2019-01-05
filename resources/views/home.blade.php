@@ -20,7 +20,7 @@
               </thead>
               <tbody>
                 @foreach($queues as $queue)
-                <tr href="/queue/{{$queue->id}}" style="cursor:pointer">
+                <tr href="/queues/{{$queue->id}}" style="cursor:pointer">
                   <th scope="row">{{$queue->name}}</th>
                   <td>
                     @foreach($counts[$queue->id] as $count)

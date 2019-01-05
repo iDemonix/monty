@@ -1,6 +1,6 @@
 <div class="modal fade" id="renameTicketModal" tabindex="-1" role="dialog" aria-labelledby="renameTicketModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
-                <form method="POST" action="/ticket/{{$ticket->id}}/rename">
+                <form method="POST" action="{{ route('ticket', ['ticket' => $ticket]) }}/rename">
                     {{ csrf_field() }}
                     <div class="modal-content">
                       <div class="modal-header">

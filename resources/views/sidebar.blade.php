@@ -30,7 +30,7 @@
             <ul class="nav flex-column mb-2">
               @foreach($queues as $queue)
               <li class="nav-item">
-                <a class="nav-link {{ (\Request::path() == 'queue/' . $queue->id) ? 'active' : '' }}" href="/queue/{{$queue->id}}">
+                <a class="nav-link {{ (\Request::path() == 'queues/' . $queue->id) ? 'active' : '' }}" href="/queues/{{$queue->id}}">
                   <span data-feather="layers"></span>
                   {{ $queue->name }}
                 </a>

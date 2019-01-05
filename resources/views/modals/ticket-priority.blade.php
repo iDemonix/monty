@@ -1,6 +1,6 @@
 <div class="modal fade" id="priorityModal" tabindex="-1" role="dialog" aria-labelledby="priorityModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
-                <form method="POST" action="/ticket/{{$ticket->id}}/priority">
+                <form method="POST" action="{{ route('ticket', ['ticket' => $ticket]) }}/priority">
                     {{ csrf_field() }}
                     <div class="modal-content">
                       <div class="modal-header">

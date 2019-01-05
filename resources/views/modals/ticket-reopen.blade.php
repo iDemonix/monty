@@ -1,6 +1,6 @@
 <div class="modal fade" id="reopenTicketModal" tabindex="-1" role="dialog" aria-labelledby="reopenTicketModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
-                <form method="POST" action="/ticket/{{$ticket->id}}/reopen">
+                <form method="POST" action="{{ route('ticket', ['ticket' => $ticket]) }}/reopen">
                     {{ csrf_field() }}
                     <div class="modal-content">
                       <div class="modal-header">
