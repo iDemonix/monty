@@ -5,7 +5,7 @@
             <h2>Queue: {{ $queue->name }}</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
               <div class="btn-group mr-2">
-                <button class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#newTicketModal">Create Ticket</button>
+                <button class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#newTicketModal"><span data-feather="plus" style="margin-right: 5px"></span>Create Ticket</button>
               </div>
             </div>
           </div>
@@ -16,6 +16,7 @@
                   <th scope="col">Status</th>
                   <th scope="col">Priority</th>
                   <th scope="col">Subject</th>
+                  <th scope="col"></th>
                   <th scope="col">Last Updated</th>
                   <th scope="col">Owner</th>
                 </tr>
@@ -28,6 +29,8 @@
                   <td>{!!Helper::labelForPriority($ticket->priority)!!}</td>
                   <td>
                     <a href="{{ route('ticket', ['ticket' => $ticket]) }}" style="text-decoration: none">{{$ticket->subject}}</a>
+                  </td>
+                  <td>
                     @if( $ticket->notes->count() > 0 )
                       <span style="font-size: 0.7em; color: #bbb;"> &nbsp;<span data-feather="message-square"></span> {{$ticket->notes->count()}}</span>
                     @endif

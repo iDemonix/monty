@@ -57,7 +57,9 @@ class AccountController extends Controller
         $user->email        = $request->input('email');
         $user->save();
 
-        return redirect()->back()->with("success","Account changed successfully.");
+        $request->session()->flash('status', 'success');
+        $request->session()->flash('message', 'Account updated successfully.');
+        return redirect()->back();
 
     }
 }

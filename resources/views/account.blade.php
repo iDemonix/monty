@@ -1,17 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
+<form action="/account" method="POST">
+      {{csrf_field()}}
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-            <h2>My Account</h1>
+            <h2>My Account</h2>
             <div class="btn-toolbar mb-2 mb-md-0">
               <div class="btn-group mr-2">
-                <button class="btn btn-sm btn-outline-info" data-toggle="modal" data-target="#changeMyPasswordModal">
+                <button class="btn btn-sm btn-outline-info" data-toggle="modal" data-target="#changeMyPasswordModal" style="margin-right: 10px">
                     <span data-feather="lock" style="margin-right: 5px"></span>Change Password
+                </button>
+                <button class="btn btn-sm btn-primary" type="submit">
+                    <span data-feather="save" style="margin-right: 5px"></span>Save Settings
                 </button>
               </div>
             </div>
           </div>
-
+          @if(Session::has('message'))
+          <div class="alert alert-{{Session::get('status', 'info')}}" role="alert">
+            {{Session::get('message')}}
+          </div>
+          @endif
           <div class="row">   
             <div class="col-md-8">
                 <div class="card">
@@ -28,8 +37,6 @@
                                 </ul>
                             </div>
                         @endif
-                        <form action="/account" method="POST">
-                            {{csrf_field()}}
                           <div class="form-group">
                             <label for="name">Full Name</label>
                             <input type="text" class="form-control" name="name" value="{{$user->name}}">
@@ -42,10 +49,6 @@
                             <label for="email">Email</label>
                             <input type="email" class="form-control" name="email" value="{{$user->email}}">
                           </div>
-                          <button type="submit" class="btn btn-success">
-                            <span data-feather="save" style="margin-right: 5px"></span>Update Account
-                          </button>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -79,5 +82,6 @@
                 </div>
             </div>
         </div>
+      </form>
 @include('modals.change-my-password')
 @endsection
