@@ -5,7 +5,7 @@
             <h2>Dashboard</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
               <div class="btn-group mr-2">
-                <button class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#newTicketModal">Create Ticket</button>
+                <button class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#newTicketModal"><span data-feather="plus"></span> Create Ticket</button>
               </div>
             </div>
           </div>

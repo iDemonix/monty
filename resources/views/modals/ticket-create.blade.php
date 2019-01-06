@@ -27,6 +27,22 @@
                           <h5 style="display:inline; margin-right: 5px"><span class="badge badge-secondary badge-nudge">Low</span></h5>
                         </div>
 
+                        <div class="form-group">
+                          <label for="owner">Owner</label>
+                          <select class="form-control" id="owner" name="owner">
+                            <option value="">Unassigned</option>
+                            <option>You ({{Auth::user()->display_name}})</option>
+                            @php
+                              $userlist = App\User::all();
+                            @endphp
+                            @foreach($userlist as $user)
+                            @if($user->id !== Auth::user()->id)
+                            <option value="{{$user->id}}">{{$user->display_name}} ({{$user->name}})</option>
+                            @endif
+                            @endforeach
+                          </select>
+                        </div>
+
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn" data-dismiss="modal">Cancel</button>

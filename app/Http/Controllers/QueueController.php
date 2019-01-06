@@ -33,6 +33,6 @@ class QueueController extends Controller
      */
     public function show(Queue $queue)
     {
-        return view('queues.dashboard')->with('queue', $queue);
+        return view('queues.index')->with('queue', $queue);
     }
 }

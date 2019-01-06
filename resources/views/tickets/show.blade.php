@@ -6,7 +6,7 @@
    <small class="created">Created {{ $ticket->created_at->diffForHumans() }} ({{ $ticket->created_at }})</small>
   </div>
   <div class="btn-toolbar mb-2 mb-md-0">
-      <div class="btn-group mr-2">
+      <div class="btn-group">
          @if($ticket->status == 0)
          <button class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#reopenTicketModal">
          <span data-feather="repeat" style="margin-right: 5px"></span>Reopen Ticket
@@ -61,7 +61,13 @@
       <div class="card card-mini">
          <div class="card-body card-body-mini test-">
             <span class="details-mini">Owner</span>
-            {{$ticket->user->name}}
+            <a href="" data-toggle="modal" data-target="#ownerModal">
+            @if($ticket->user)
+              <strong>{{$ticket->user->name}}</strong>
+            @else
+              <h5 style="display:inline"><span class="pri-badge badge badge-warning">Unassigned</span></h5>
+            @endif
+            </a>
          </div>
       </div>
    </div>
@@ -88,7 +94,7 @@
          <button type="button" class="btn btn-outline-secondary btn-sm btn-spacer" data-toggle="modal" data-target="#addAttachmentsModal">
           <span data-feather="paperclip"></span>  <span id="addattachments">Add Attachments</span>
          </button>
-         <button type="button" class="btn btn-outline-danger btn-sm btn-spacer">
+         <button type="button" class="btn btn-outline-danger btn-sm btn-spacer" >
           <span data-feather="x"></span>  Close Ticket
         </button>
       </div>
@@ -164,7 +170,7 @@
             <strong>{{!empty($event->user->name) ? $event->user->name() : 'Unknown'}}</strong> moved the ticket from {!!Helper::labelForStatus($event->old)!!} to {!!Helper::labelForStatus($event->new)!!})
 
             @elseif($event->field == 'subject')
-            <strong>{{!empty($event->user->name) ? $event->user->name() : 'Unknown'}}</strong> changed the ticket subject to <strong>{{$event->new}}</strong> (was <em>{{$event->old}}</em>)
+            <strong>{{!empty($event->user->name) ? $event->user->name() : 'Unknown'}}</strong> changed the ticket subject to <strong>{{$event->new}}</strong> (was &ldquo;<em>{{$event->old}}</em>&rdquo;)
             @endif
          </div>
          @else
@@ -219,7 +225,12 @@
       </div>
       <div class="timeline-box timeline-box-final">
          <div class="timeline-update">
+          @if($ticket->user)
             Created at <strong>{{$ticket->created_at}}</strong> ({{$ticket->created_at->diffForHumans()}}) by <strong>{{$ticket->user->name}}</strong>
+          @else
+            f($ticket->user)
+            Created at <strong>{{$ticket->created_at}}</strong> ({{$ticket->created_at->diffForHumans()}})
+          @endif
          </div>
       </div>
    </div>
@@ -232,6 +243,8 @@
 @include('modals.ticket-reopen')
 @include('modals.ticket-rename')
 @include('modals.ticket-attachments')
+@include('modals.ticket-owner')
+
 @endsection
 
 @section('scripts')

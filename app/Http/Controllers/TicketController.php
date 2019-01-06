@@ -109,7 +109,7 @@ class TicketController extends Controller
         $ticket->status = 1; // open
         $ticket->priority = $request->input('priority');
         $ticket->queue_id = $request->input('queue');
-        $ticket->user_id = Auth::user()->id;
+        $ticket->user_id = $request->input('owner');
 
         $ticket->save();
 

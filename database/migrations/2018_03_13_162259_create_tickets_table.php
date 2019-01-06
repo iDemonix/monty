@@ -26,7 +26,7 @@ class CreateTicketsTable extends Migration
             $table->integer('queue_id')->unsigned();
             $table->foreign('queue_id')->references('id')->on('queues');
 
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
